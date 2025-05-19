@@ -35,10 +35,6 @@
         :scene
       ]
       [
-        "/main/main.collection"
-        :scene
-      ]
-      [
         "/main/player.script"
         :code
       ]
@@ -68,6 +64,18 @@
       ]
       [
         "/main/player.go"
+        :scene
+      ]
+      [
+        "/main/main.gui_script"
+        :code
+      ]
+      [
+        "/main/main.gui"
+        :scene
+      ]
+      [
+        "/main/main.collection"
         :scene
       ]
     ]
