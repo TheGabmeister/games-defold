@@ -5,6 +5,30 @@
         "/README.md"
         :html
       ]
+      [
+        "/builtins/assets/meshes/quad.dae"
+        :scene
+      ]
+      [
+        "/builtins/assets/meshes/cube.dae"
+        :scene
+      ]
+      [
+        "/game.project"
+        :cljfx-form-view
+      ]
+      [
+        "/main/main.collection"
+        :scene
+      ]
+      [
+        "/input/game.input_binding"
+        :cljfx-form-view
+      ]
+      [
+        "/main/player.script"
+        :code
+      ]
     ]
   }
 }
