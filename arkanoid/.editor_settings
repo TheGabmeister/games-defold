@@ -1,4 +1,17 @@
 {
+  :bundle {
+    :last-bundle-command :project.bundle-windows
+    :output-directory "C:\\Users\\User\\Downloads"
+    :windows {
+      :build_report false
+      :contentless false
+      :liveupdate false
+      :platform "x86_64-win32"
+      :texture_compression "enabled"
+      :variant "release"
+      :with_symbols false
+    }
+  }
   :workflow {
     :recent-files [
       [
@@ -14,20 +27,48 @@
         :scene
       ]
       [
-        "/game.project"
-        :cljfx-form-view
+        "/builtins/graphics/particle_blob.tilesource"
+        :scene
+      ]
+      [
+        "/main/game.atlas"
+        :scene
       ]
       [
         "/main/main.collection"
         :scene
       ]
       [
+        "/main/player.script"
+        :code
+      ]
+      [
         "/input/game.input_binding"
         :cljfx-form-view
       ]
       [
-        "/main/player.script"
+        "/game.project"
+        :cljfx-form-view
+      ]
+      [
+        "/main/enemy.go"
+        :scene
+      ]
+      [
+        "/main/block.script"
         :code
+      ]
+      [
+        "/main/ball.go"
+        :scene
+      ]
+      [
+        "/main/ball.script"
+        :code
+      ]
+      [
+        "/main/player.go"
+        :scene
       ]
     ]
   }
