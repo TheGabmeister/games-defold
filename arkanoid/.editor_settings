@@ -35,31 +35,11 @@
         :scene
       ]
       [
-        "/main/player.script"
-        :code
-      ]
-      [
-        "/input/game.input_binding"
-        :cljfx-form-view
-      ]
-      [
-        "/game.project"
-        :cljfx-form-view
-      ]
-      [
         "/main/enemy.go"
         :scene
       ]
       [
         "/main/block.script"
-        :code
-      ]
-      [
-        "/main/ball.go"
-        :scene
-      ]
-      [
-        "/main/ball.script"
         :code
       ]
       [
@@ -71,12 +51,32 @@
         :code
       ]
       [
+        "/game.project"
+        :cljfx-form-view
+      ]
+      [
         "/main/main.gui"
         :scene
       ]
       [
         "/main/main.collection"
         :scene
+      ]
+      [
+        "/input/game.input_binding"
+        :cljfx-form-view
+      ]
+      [
+        "/main/player.script"
+        :code
+      ]
+      [
+        "/main/ball.go"
+        :scene
+      ]
+      [
+        "/main/ball.script"
+        :code
       ]
     ]
   }
