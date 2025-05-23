@@ -1,3 +1,25 @@
+local VELOCITY = vmath.vector3(200, 200, 0) -- initial velocity
+
 function init(self)
-	go.animate(".", "position.y", go.PLAYBACK_ONCE_FORWARD, 300, go.EASING_LINEAR, 1)
+    self.velocity = VELOCITY
+end
+
+function update(self, dt)
+    local pos = go.get_position()
+    pos = pos + self.velocity * dt
+    go.set_position(pos)
+end
+
+function on_message(self, message_id, message, sender)
+    print("Received message_id:", message_id)
+    if message_id == hash("contact_point_response") then
+        -- Reverse velocity based on collision normal
+        local normal = message.normal
+        if math.abs(normal.x) > 0 then
+            self.velocity.x = -self.velocity.x
+        end
+        if math.abs(normal.y) > 0 then
+            self.velocity.y = -self.velocity.y
+        end
+    end
 end

@@ -11,8 +11,11 @@ instances {
   id: "block"
   prototype: "/main/block.go"
   position {
-    x: 287.0
-    y: 311.0
+    x: 389.0
+    y: 512.0
+  }
+  scale3 {
+    x: 14.5
   }
 }
 instances {
@@ -21,6 +24,47 @@ instances {
   position {
     x: 285.0
     y: 225.0
+  }
+}
+instances {
+  id: "block1"
+  prototype: "/main/block.go"
+  position {
+    x: 389.0
+    y: 108.0
+  }
+  scale3 {
+    x: 14.5
+  }
+}
+instances {
+  id: "block2"
+  prototype: "/main/block.go"
+  position {
+    x: 119.0
+    y: 277.0
+  }
+  rotation {
+    z: -0.70710677
+    w: 0.70710677
+  }
+  scale3 {
+    x: 14.5
+  }
+}
+instances {
+  id: "block3"
+  prototype: "/main/block.go"
+  position {
+    x: 821.0
+    y: 277.0
+  }
+  rotation {
+    z: -0.70710677
+    w: 0.70710677
+  }
+  scale3 {
+    x: 14.5
   }
 }
 scale_along_z: 0
