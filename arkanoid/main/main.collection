@@ -111,4 +111,8 @@ instances {
     y: 340.0
   }
 }
+instances {
+  id: "ui"
+  prototype: "/main/ui.go"
+}
 scale_along_z: 0

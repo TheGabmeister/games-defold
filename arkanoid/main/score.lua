@@ -4,7 +4,7 @@ M.score = 0
 
 function M.add(points)
 	M.score = M.score + points
-	print("Current score: " .. M.score)
+    msg.post("ui#main", "update_score", { value = M.score })
 end
 
 function M.reset()
