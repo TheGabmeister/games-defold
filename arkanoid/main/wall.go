@@ -1,7 +1,3 @@
-components {
-  id: "block"
-  component: "/main/block.script"
-}
 embedded_components {
   id: "sprite"
   type: "sprite"
@@ -12,6 +8,9 @@ embedded_components {
   "  texture: \"/main/game.atlas\"\n"
   "}\n"
   ""
+  scale {
+    x: 20.0
+  }
 }
 embedded_components {
   id: "collisionobject"
@@ -33,8 +32,8 @@ embedded_components {
   "    count: 3\n"
   "    id: \"box\"\n"
   "  }\n"
-  "  data: 32.0\n"
-  "  data: 16.0\n"
+  "  data: 650.0\n"
+  "  data: 10.0\n"
   "  data: 10.0\n"
   "}\n"
   ""

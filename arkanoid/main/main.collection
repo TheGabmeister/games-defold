@@ -8,17 +8,6 @@ instances {
   }
 }
 instances {
-  id: "block"
-  prototype: "/main/block.go"
-  position {
-    x: 389.0
-    y: 512.0
-  }
-  scale3 {
-    x: 14.5
-  }
-}
-instances {
   id: "ball"
   prototype: "/main/ball.go"
   position {
@@ -27,44 +16,99 @@ instances {
   }
 }
 instances {
+  id: "block"
+  prototype: "/main/block.go"
+  position {
+    x: 118.0
+    y: 347.0
+  }
+}
+instances {
+  id: "wall"
+  prototype: "/main/wall.go"
+  position {
+    x: 625.0
+    y: 7.0
+  }
+}
+instances {
+  id: "wall1"
+  prototype: "/main/wall.go"
+  position {
+    x: 13.0
+    y: 57.0
+  }
+  rotation {
+    z: 0.70710677
+    w: 0.70710677
+  }
+}
+instances {
+  id: "wall2"
+  prototype: "/main/wall.go"
+  position {
+    x: 714.0
+    y: 48.0
+  }
+  rotation {
+    z: 0.70710677
+    w: 0.70710677
+  }
+}
+instances {
+  id: "wall3"
+  prototype: "/main/wall.go"
+  position {
+    x: 635.0
+    y: 686.0
+  }
+}
+instances {
   id: "block1"
   prototype: "/main/block.go"
   position {
-    x: 389.0
-    y: 108.0
-  }
-  scale3 {
-    x: 14.5
+    x: 204.0
+    y: 340.0
   }
 }
 instances {
   id: "block2"
   prototype: "/main/block.go"
   position {
-    x: 119.0
-    y: 277.0
-  }
-  rotation {
-    z: -0.70710677
-    w: 0.70710677
-  }
-  scale3 {
-    x: 14.5
+    x: 290.0
+    y: 341.0
   }
 }
 instances {
   id: "block3"
   prototype: "/main/block.go"
   position {
-    x: 821.0
-    y: 277.0
+    x: 385.0
+    y: 344.0
   }
-  rotation {
-    z: -0.70710677
-    w: 0.70710677
+}
+instances {
+  id: "block4"
+  prototype: "/main/block.go"
+  position {
+    x: 473.0
+    y: 344.0
   }
-  scale3 {
-    x: 14.5
+}
+instances {
+  id: "block5"
+  prototype: "/main/block.go"
+  position {
+    x: 544.0
+    y: 343.0
+  }
+}
+instances {
+  id: "block6"
+  prototype: "/main/block.go"
+  position {
+    x: 626.0
+    y: 340.0
   }
 }
 scale_along_z: 0

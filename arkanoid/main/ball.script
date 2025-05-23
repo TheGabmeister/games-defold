@@ -11,14 +11,13 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-    print("Received message_id:", message_id)
     if message_id == hash("contact_point_response") then
         -- Reverse velocity based on collision normal
         local normal = message.normal
-        if math.abs(normal.x) > 0 then
+        if math.abs(normal.x) > 0.01 then
             self.velocity.x = -self.velocity.x
         end
-        if math.abs(normal.y) > 0 then
+        if math.abs(normal.y) > 0.01 then
             self.velocity.y = -self.velocity.y
         end
     end

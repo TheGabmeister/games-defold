@@ -1,5 +1,10 @@
+local score = require "main.score"
+
+go.property("score", 100) 
+
 function on_message(self, message_id, message, sender)
-	if message_id == hash("trigger_response") and message.enter then
+	if message_id == hash("collision_response") then
+		score.add(self.score)
 		go.delete()
 	end
 end
