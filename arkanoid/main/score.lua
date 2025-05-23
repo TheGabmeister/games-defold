@@ -1,10 +1,16 @@
 local M = {}
 
 M.score = 0
+M.hi_score = 0
 
 function M.add(points)
 	M.score = M.score + points
-    msg.post("ui#main", "update_score", { value = M.score })
+	msg.post("ui#main", "update_score", { value = M.score })
+	
+	if M.score > M.hi_score then
+		M.hi_score = M.score
+		msg.post("ui#main", "update_hi_score", { value = M.hi_score })
+	end
 end
 
 function M.reset()

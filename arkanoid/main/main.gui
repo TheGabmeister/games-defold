@@ -5,17 +5,32 @@ fonts {
 }
 nodes {
   position {
-    x: 230.0
-    y: 389.0
+    x: 172.0
+    y: 554.0
   }
   size {
     x: 200.0
     y: 100.0
   }
   type: TYPE_TEXT
-  text: "<text>"
+  text: "0"
   font: "default"
-  id: "text"
+  id: "current_score"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 376.0
+    y: 555.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "0"
+  font: "default"
+  id: "hi_score"
   inherit_alpha: true
 }
 material: "/builtins/materials/gui.material"
