@@ -1,16 +1,16 @@
 components {
   id: "main"
-  component: "/main/main.script"
+  component: "/scripts/main.script"
 }
 components {
   id: "flap"
-  component: "/assets/sounds/flap.sound"
+  component: "/sounds/flap.sound"
 }
 components {
   id: "score"
-  component: "/assets/sounds/score.sound"
+  component: "/sounds/score.sound"
 }
 components {
   id: "hit"
-  component: "/assets/sounds/hit.sound"
+  component: "/sounds/hit.sound"
 }

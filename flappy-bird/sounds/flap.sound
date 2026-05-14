@@ -1,4 +1,1 @@
-sound: "/assets/sounds/flap.wav"
-looping: 0
-group: "master"
-gain: 1.0
+sound: "/sounds/flap.wav"

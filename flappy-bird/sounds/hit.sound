@@ -1,4 +1,1 @@
-sound: "/assets/sounds/hit.wav"
-looping: 0
-group: "master"
-gain: 1.0
+sound: "/sounds/hit.wav"

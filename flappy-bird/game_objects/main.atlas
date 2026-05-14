@@ -1,18 +1,16 @@
 images {
-  image: "/assets/sprites/background.png"
+  image: "/sprites/background.png"
 }
 images {
-  image: "/assets/sprites/bird.png"
+  image: "/sprites/bird.png"
 }
 images {
-  image: "/assets/sprites/ground.png"
+  image: "/sprites/ground.png"
 }
 images {
-  image: "/assets/sprites/pipe_bottom.png"
+  image: "/sprites/pipe_bottom.png"
 }
 images {
-  image: "/assets/sprites/pipe_top.png"
+  image: "/sprites/pipe_top.png"
 }
-margin: 0
 extrude_borders: 2
-inner_padding: 0

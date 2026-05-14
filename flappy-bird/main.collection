@@ -1,21 +1,19 @@
 name: "main"
-scale_along_z: 0
 instances {
   id: "controller"
-  prototype: "/main/controller.go"
+  prototype: "/game_objects/controller.go"
 }
 instances {
   id: "background"
-  prototype: "/main/background.go"
+  prototype: "/game_objects/background.go"
   position {
     x: 320.0
     y: 568.0
-    z: 0.0
   }
 }
 instances {
   id: "ground"
-  prototype: "/main/ground.go"
+  prototype: "/game_objects/ground.go"
   position {
     x: 320.0
     y: 80.0
@@ -24,7 +22,7 @@ instances {
 }
 instances {
   id: "bird"
-  prototype: "/main/bird.go"
+  prototype: "/game_objects/bird.go"
   position {
     x: 180.0
     y: 568.0
@@ -33,7 +31,7 @@ instances {
 }
 instances {
   id: "score"
-  prototype: "/main/score.go"
+  prototype: "/game_objects/score.go"
   position {
     x: 320.0
     y: 1010.0
@@ -42,7 +40,7 @@ instances {
 }
 instances {
   id: "pipe_top_a"
-  prototype: "/main/pipe_top.go"
+  prototype: "/game_objects/pipe_top.go"
   position {
     x: 760.0
     y: 1000.0
@@ -51,7 +49,7 @@ instances {
 }
 instances {
   id: "pipe_bottom_a"
-  prototype: "/main/pipe_bottom.go"
+  prototype: "/game_objects/pipe_bottom.go"
   position {
     x: 760.0
     y: 120.0
@@ -60,7 +58,7 @@ instances {
 }
 instances {
   id: "pipe_top_b"
-  prototype: "/main/pipe_top.go"
+  prototype: "/game_objects/pipe_top.go"
   position {
     x: 1120.0
     y: 1000.0
@@ -69,13 +67,14 @@ instances {
 }
 instances {
   id: "pipe_bottom_b"
-  prototype: "/main/pipe_bottom.go"
+  prototype: "/game_objects/pipe_bottom.go"
   position {
     x: 1120.0
     y: 120.0
     z: 0.3
   }
 }
+scale_along_z: 0
 embedded_instances {
   id: "camera"
   data: "embedded_components {\n"
