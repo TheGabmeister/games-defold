@@ -304,35 +304,4 @@ Paragons combine all 3 Tier 5 paths into a single hyper-powerful tower. See S4 i
 | Wizard Monkey | **Magus Perfectus** | v36.0 | $500,000 | Dark Phoenix companion; Arcane/Drain beam toggle; zombie ZOMG ability |
 | Monkey Sub | **Nautic Siege Core** | v41.0 | $500,000 | Cannons + missiles; radiation decamo/deregrow; -20% cooldowns; Final Strike |
 
----
-
-## Tower Placement
-
-### Land vs. Water
-
-| Placement | Towers |
-|---|---|
-| Land Only | Dart, Boomerang, Bomb, Tack, Ice, Glue, Sniper, Ace, Heli, Mortar, Dartling, Wizard, Super, Ninja, Alchemist, Druid, Beast Handler, Farm, Spike Factory, Village, Engineer |
-| Water Only | Monkey Sub, Monkey Buccaneer |
-| Land or Water | Mermonkey, Pat Fusty (hero) |
-
-**Placing land towers on water:** Pontoon power, Carrier Flagship deck, Arctic Wind (Ice Monkey Path 2 T3+) freezes water into a platform.
-
-**Placing water towers on land:** Portable Lake power.
-
-### Targeting Options
-
-| Mode | Behavior |
-|---|---|
-| First | Target the bloon farthest along the track |
-| Last | Target the bloon nearest to track entrance |
-| Close | Target the bloon nearest to the tower |
-| Strong | Target the bloon with the highest RBE in range |
-
-**Exceptions:**
-- Mortar Monkey: Fixed map position (player-set)
-- Dartling Gunner: Aims at cursor (or locked position with upgrade)
-- Monkey Ace: Flight pattern (Circle, Figure Eight, Wingmonkey, Centered Path)
-- Heli Pilot: Follow Touch, Lock in Place, Pursuit (auto)
-- Spike Factory: Close/Far/Smart for spike placement
-- Banana Farm / Monkey Village: Non-combat
+Placement rules and targeting options are documented in SPEC.md S4.

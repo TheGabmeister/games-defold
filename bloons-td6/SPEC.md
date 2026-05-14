@@ -254,7 +254,7 @@ The Super Monkey's Path 1 T4 (Sun Temple) and T5 (True Sun God) have unique sacr
 
 ## 5. Bloons
 
-Bloons are the enemies in BTD6. They travel the track and the player must pop them before they escape. See [docs/btd6/bloons.md](docs/btd6/bloons.md) for complete stat tables, boss bloon data, and round milestones.
+Bloons are the enemies in BTD6. They travel the track and the player must pop them before they escape. See [docs/btd6/bloons.md](docs/btd6/bloons.md) for complete stat tables, boss bloon HP values, damage type matrix, and round milestones.
 
 ### Standard Bloons
 
@@ -271,62 +271,56 @@ Standard bloons have 1 HP per layer (except Ceramic at 10 HP). Popping a layer r
 
 ### MOAB-Class Bloons
 
-| Bloon | HP | Total RBE | Speed | Children | Key Properties |
-|---|---|---|---|---|---|
-| MOAB | 200 | 616 | 1.0x | 4 Ceramic | -- |
-| BFB | 700 | 3,164 | 0.25x | 4 MOAB | -- |
-| ZOMG | 4,000 | 16,656 | 0.18x | 4 BFB | -- |
-| DDT | 400 | 816 | 2.75x | 4 Camo Regrow Ceramic | Lead + Black + Camo |
-| BAD | 20,000 | 55,760 | 0.18x | 2 ZOMG + 3 DDT | Immune to ALL CC and instakills |
+Five blimp-type bloons with massive HP pools, each containing smaller bloons or blimps:
+
+- **MOAB** (200 HP, 616 RBE): 4 Ceramics. First appears Round 40.
+- **BFB** (700 HP, 3,164 RBE): 4 MOABs. First appears Round 60.
+- **ZOMG** (4,000 HP, 16,656 RBE): 4 BFBs. First appears Round 80.
+- **DDT** (400 HP, 816 RBE, speed 2.75x): 4 Camo Regrow Ceramics. Has Lead + Black + Camo properties -- the hardest bloon to counter. First appears Round 90.
+- **BAD** (20,000 HP, 55,760 RBE): 2 ZOMGs + 3 DDTs. Immune to ALL slowing, stunning, knockback, and instakill effects. First appears Round 100.
+
+All MOAB-class are immune to most glue and freezing effects. Fortified variants have double HP.
 
 ### Bloon Properties
 
-| Property | Effect | Eligible Bloons | Counter |
-|---|---|---|---|
-| Camo | Invisible to towers without Camo detection | All standard + DDT (innate) | Radar Scanner, Ninja (innate), Etienne Lv8 |
-| Regrow | Regenerates 1 layer every 3 seconds back to original form | All standard (not MOAB-class) | Grow Blocker, Ezili |
-| Fortified | Doubles HP (quadruples Lead HP) | Lead, Ceramic, all MOAB-class | Raw damage |
+Three modifier properties can be applied to bloons, and they stack freely:
 
-Properties stack: the hardest standard combination is **Fortified Camo Regrow Ceramic** (20 HP, regrows, needs camo detection).
+- **Camo:** Invisible to towers without Camo detection. Applies to all standard bloons; DDT has innate Camo. Counters: Radar Scanner (Village 0-2-0), Ninja (innate), Etienne Lv8 (global).
+- **Regrow:** Regenerates 1 layer every 3 seconds back to original form. Standard bloons only (not MOAB-class). Counters: Grow Blocker (Village 0-1-0), Ezili's Heartstopper.
+- **Fortified:** Doubles HP (quadruples for Lead). Applies to Lead, Ceramic, and all MOAB-class.
 
-### Damage Type System
+The hardest standard combination is **Fortified Camo Regrow Ceramic** (20 HP, regrows, requires camo detection).
 
-Towers inflict specific damage types. Each type has immunities against certain bloon categories. "Frozen" is a bloon state (created by Ice Monkey) that acts like a bloon type for immunity purposes.
+### Damage Types
 
-| Type | Cannot Pop | Common Sources |
-|---|---|---|
-| Normal | Lead, Frozen | Various (default for generic attacks) |
-| Sharp | Lead, Frozen | Dart, Boomerang, Tack, Ninja, Sniper |
-| Shatter | Lead | Upgraded Sharp type; gains Frozen-popping |
-| Explosion | Black, Zebra, DDT | Bomb Shooter, missiles |
-| Cold | White, Zebra, Lead | Ice Monkey |
-| Energy | Lead, Purple | Super Monkey (base) |
-| Plasma | Purple | Super Monkey (upgraded) |
-| Fire | Purple | Wizard, Mortar, Gwendolin |
-| Acid | Nothing -- pops all | Glue Gunner, Alchemist |
+Each tower inflicts a specific damage type, and certain bloon types are immune to certain damage types. The key immunity rules:
 
-**Frozen bloons:** Bloons frozen by Ice Monkey become a "Frozen" state. Sharp and Normal damage cannot pop Frozen bloons; Explosion, Shatter, Fire, Plasma, and Acid can.
+- **Lead** is immune to Sharp and Normal (the most common types). Requires Explosion, Fire, Plasma, Acid, or upgrade-granted Lead-popping.
+- **Black** is immune to Explosion. **White** is immune to Cold. **Zebra** inherits both.
+- **Purple** is immune to Energy, Plasma, and Fire (energy-based attacks).
+- **Frozen** bloons (created by Ice Monkey) can't be popped by Sharp or Normal.
+- **DDT** combines Lead + Black + Camo -- requires a type that pops both Lead and Black, plus Camo detection. Effective: Plasma, Fire, Acid, or Normal with MIB.
+- **Acid** (Glue Gunner, Alchemist) pops all bloon types with no immunities.
+- **Monkey Intelligence Bureau** (Village 0-3-0) overrides all damage type immunities for towers in range.
 
-**Monkey Intelligence Bureau** (Village 0-3-0) grants all towers in range the ability to pop any bloon type regardless of damage immunities.
+See [docs/btd6/bloons.md](docs/btd6/bloons.md) for the full damage type matrix.
 
 ### Super Ceramics (Round 81+)
 
-From Round 81 onward, all Ceramics become Super Ceramics: 60 HP (Fortified: 120), but spawn only 1 child per layer instead of 2, reducing total RBE to ~60.
+From Round 81 onward, all Ceramics become Super Ceramics: 60 HP (Fortified: 120), but spawn only 1 child per layer instead of 2.
 
 ### Boss Bloons
 
-Boss bloons appear in Boss Bloon Events at Rounds 40, 60, 80, 100, and 120 (5 tiers). Available in Normal and Elite difficulties. Each has 4-7 skull thresholds that trigger special abilities.
+Boss bloons appear in Boss Bloon Events at Rounds 40, 60, 80, 100, and 120 (5 tiers). Available in Normal and Elite difficulties. Each has skull thresholds that trigger special abilities. Elite T5 HP ranges from 24,000,000 to 40,000,000.
 
 | Boss | Signature Mechanic |
 |---|---|
 | Bloonarius | Spawns massive bloon waves at each skull |
-| Lych | Steals tower buffs to heal; spawns Lych-Soul at each skull |
-| Vortex | Fastest boss; speeds up nearby bloons; destroys projectiles periodically |
+| Lych | Steals tower buffs to heal; spawns Lych-Soul mini-boss at each skull |
+| Vortex | Fastest boss; speeds up nearby bloons; periodically destroys projectiles |
 | Dreadbloon | Ceramic armor shell; flat damage reduction; rotates tower category immunity |
 | Phayze | Innate Camo; disables camo detection; portals shift bloon spawn point |
 | Blastapopoulos | Purple immunity; purges DoT; Heat mechanic stuns towers |
-
-Elite boss T5 HP ranges from 24,000,000 to 40,000,000 depending on the boss.
 
 ---
 
@@ -403,12 +397,12 @@ Total: approximately **77 maps** (count grows with updates).
 
 ### Freeplay
 
-After completing the final round of any mode, the player enters Freeplay with escalating difficulty:
-- **Super Ceramics** from Round 81: 60 HP shell, 1 child instead of 2
-- **MOAB HP scaling:** +2%/round (R81-100), then +5%/round (R101+)
+After completing the final round of any mode, the player enters Freeplay with infinitely escalating difficulty:
+- **Super Ceramics** from Round 81 (see S5)
+- **MOAB HP scaling:** +2%/round (R81-100), then +5%/round (R101+), compounding
 - **Speed scaling:** +2%/round from R81
-- **Cash-per-pop tax:** Reduced payout in later rounds (see S9)
-- **After Round 140:** Bloon compositions become randomized (RBE budget formula: Round x 4,000 - 217,000)
+- **Cash-per-pop tax:** Progressively reduced income (see S9)
+- **After Round 140:** Bloon compositions become randomized
 
 ### Sandbox
 
@@ -639,16 +633,10 @@ Players create and share custom challenges with configurable parameters:
 - **Bottom center:** Tower category tabs (Primary, Military, Magic, Support, Heroes, Powers) for placement
 - **Tower selection panel:** Shows when a tower is selected -- displays targeting priority, sell button, 3 upgrade paths with costs and lock indicators
 
-### MOAB Health Bars
-- MOAB-class bloons display a health bar above them
-- Health bar color corresponds to bloon type (blue for MOAB, red for BFB, green for ZOMG, etc.)
-- Boss bloons display a segmented health bar with skull markers at threshold points
-
-### Key Indicators
+### In-Game Indicators
 - **Range circle:** Shown when placing or selecting a tower
-- **Camo detection radius:** Shown for towers with camo detection
+- **MOAB health bars:** Color-coded by bloon type; boss bloons display segmented bars with skull markers at threshold points
 - **Track path:** Clearly visible bloon path on each map
-- **Bloon send indicators:** Visual markers for upcoming bloon waves
 
 ### Menu Screens
 - **Main menu:** Play, Heroes, Powers, Knowledge, Collection, Trophy Store, Settings
@@ -666,20 +654,10 @@ Players create and share custom challenges with configurable parameters:
 - One active save per map/mode combination
 - CHIMPS tracking: exiting the game and re-entering marks the run as "Red CHIMPS" (not Black Border eligible)
 
-### Difficulty Settings
-- No difficulty slider -- difficulty is determined by chosen game mode and sub-mode (see S7)
-- Freeplay difficulty scales infinitely via HP/speed ramping
-
-### Camera
-- Fixed top-down 2D view
-- Zoom in/out with scroll wheel or pinch gesture
-- Pan by dragging or edge scrolling
+### Camera & Game Speed
+- Fixed top-down 2D view with zoom and pan (see S2 for input details)
 - No camera rotation
-
-### Game Speed
-- 1x: Normal speed
-- 3x: Fast-forward (toggled via button or spacebar)
-- No slow-motion option (except Time Stop power)
+- Two speed settings: 1x normal and 3x fast-forward
 
 ### Audio System
 - Background music changes per map theme
@@ -697,8 +675,7 @@ Players create and share custom challenges with configurable parameters:
 - **Freeplay HP scaling formula** past Round 200 may involve additional breakpoints or caps that are not fully documented.
 - **Co-op mode latency handling** and exact territory division rules per map are not fully documented.
 - **Some hero ability numbers** (exact damage, cooldown, duration at each level) vary by source and game version.
-- **Beast Handler and Mermonkey** upgrade paths, base stats, and Tier 5 names are not yet documented in this spec. Both are post-launch additions (v36.0 and v44.0 respectively).
-- **Mermonkey** placement rules (confirmed land + water) and base stats need full documentation.
+- **Beast Handler and Mermonkey** upgrade paths and Tier 5 names are not yet documented. Both are post-launch additions (v36.0 and v44.0 respectively).
 - **Upgrade costs** in the companion tower doc may be slightly off for some towers; costs have been rebalanced across patches. Values reflect approximate Medium difficulty costs.
 
 ---
