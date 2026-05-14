@@ -1,9 +1,203 @@
+local FLAP = hash("flap")
+local TOUCH = hash("touch")
+
+local SCREEN_W = 640
+local SCREEN_H = 1136
+local BIRD_X = 180
+local BIRD_W = 76
+local BIRD_H = 54
+local PIPE_W = 120
+local PIPE_H = 720
+local PIPE_GAP = 292
+local PIPE_SPACING = 360
+local GROUND_TOP = 150
+local PIPE_SPEED = 265
+local GRAVITY = -1850
+local FLAP_SPEED = 640
+local SAVE_FILE = sys.get_save_file("flappy-bird", "high_score")
+
+local PIPE_IDS = {
+	{
+		top = "/pipe_top_a",
+		bottom = "/pipe_bottom_a",
+		x = SCREEN_W + 120,
+		gap_y = 560,
+		scored = false
+	},
+	{
+		top = "/pipe_top_b",
+		bottom = "/pipe_bottom_b",
+		x = SCREEN_W + 120 + PIPE_SPACING,
+		gap_y = 650,
+		scored = false
+	}
+}
+
+local function random_gap_y()
+	return math.random(GROUND_TOP + 210, SCREEN_H - 210)
+end
+
+local function set_pipe_position(pipe)
+	local top_y = pipe.gap_y + PIPE_GAP * 0.5 + PIPE_H * 0.5
+	local bottom_y = pipe.gap_y - PIPE_GAP * 0.5 - PIPE_H * 0.5
+	go.set_position(vmath.vector3(pipe.x, top_y, 0.3), pipe.top)
+	go.set_position(vmath.vector3(pipe.x, bottom_y, 0.3), pipe.bottom)
+end
+
+local function update_bird(self)
+	local tilt = math.max(-0.65, math.min(0.45, self.velocity / 900))
+	go.set_position(vmath.vector3(BIRD_X, self.bird_y, 0.5), "/bird")
+	go.set_rotation(vmath.quat_rotation_z(tilt), "/bird")
+end
+
+local function update_score_label(self)
+	if self.started and not self.game_over then
+		label.set_text("/score#label", tostring(self.score))
+	elseif self.game_over then
+		label.set_text("/score#label", "SCORE " .. self.score .. "\nBEST " .. self.high_score .. "\nTAP")
+	else
+		label.set_text("/score#label", "BEST\n" .. self.high_score)
+	end
+end
+
+local function update_score(self, value)
+	self.score = value
+	update_score_label(self)
+	print("Score: " .. self.score)
+end
+
+local function load_high_score()
+	local data = sys.load(SAVE_FILE)
+	return data.high_score or 0
+end
+
+local function save_high_score(score)
+	sys.save(SAVE_FILE, { high_score = score })
+end
+
+local function reset_game(self)
+	self.started = false
+	self.game_over = false
+	self.bird_y = 568
+	self.velocity = 0
+	self.idle_time = 0
+	update_score(self, 0)
+
+	for i, pipe in ipairs(PIPE_IDS) do
+		pipe.x = SCREEN_W + 120 + (i - 1) * PIPE_SPACING
+		pipe.gap_y = random_gap_y()
+		pipe.scored = false
+		set_pipe_position(pipe)
+	end
+
+	update_bird(self)
+end
+
+local function play_sound(component)
+	msg.post(component, "play_sound")
+end
+
+local function die(self)
+	if self.game_over then
+		return
+	end
+
+	self.game_over = true
+	if self.score > self.high_score then
+		self.high_score = self.score
+		save_high_score(self.high_score)
+	end
+	update_score_label(self)
+	play_sound("#hit")
+end
+
+local function flap(self)
+	if self.game_over then
+		reset_game(self)
+		return
+	end
+
+	self.started = true
+	update_score_label(self)
+	self.velocity = FLAP_SPEED
+	play_sound("#flap")
+end
+
+local function pipe_hits_bird(pipe, bird_y)
+	local bird_left = BIRD_X - BIRD_W * 0.5
+	local bird_right = BIRD_X + BIRD_W * 0.5
+	local pipe_left = pipe.x - PIPE_W * 0.5
+	local pipe_right = pipe.x + PIPE_W * 0.5
+
+	if bird_right < pipe_left or bird_left > pipe_right then
+		return false
+	end
+
+	local gap_bottom = pipe.gap_y - PIPE_GAP * 0.5
+	local gap_top = pipe.gap_y + PIPE_GAP * 0.5
+	local bird_bottom = bird_y - BIRD_H * 0.5
+	local bird_top = bird_y + BIRD_H * 0.5
+	return bird_bottom < gap_bottom or bird_top > gap_top
+end
+
 function init(self)
 	msg.post(".", "acquire_input_focus")
+	math.randomseed(os.time())
+	self.high_score = load_high_score()
+	reset_game(self)
+	print("Tap/click or press Space, Up, W, or Enter to flap. Crash, then press again to restart.")
+end
+
+function update(self, dt)
+	if not self.started and not self.game_over then
+		self.idle_time = self.idle_time + dt
+		self.bird_y = 568 + math.sin(self.idle_time * 4) * 18
+		update_bird(self)
+		return
+	end
+
+	if self.game_over then
+		self.velocity = self.velocity + GRAVITY * dt
+		self.bird_y = math.max(GROUND_TOP + BIRD_H * 0.5, self.bird_y + self.velocity * dt)
+		update_bird(self)
+		return
+	end
+
+	self.velocity = self.velocity + GRAVITY * dt
+	self.bird_y = self.bird_y + self.velocity * dt
+	update_bird(self)
+
+	if self.bird_y - BIRD_H * 0.5 <= GROUND_TOP or self.bird_y + BIRD_H * 0.5 >= SCREEN_H then
+		die(self)
+		return
+	end
+
+	for _, pipe in ipairs(PIPE_IDS) do
+		pipe.x = pipe.x - PIPE_SPEED * dt
+
+		if pipe.x < -PIPE_W then
+			pipe.x = pipe.x + PIPE_SPACING * #PIPE_IDS
+			pipe.gap_y = random_gap_y()
+			pipe.scored = false
+		end
+
+		if not pipe.scored and pipe.x + PIPE_W * 0.5 < BIRD_X then
+			pipe.scored = true
+			update_score(self, self.score + 1)
+			play_sound("#score")
+		end
+
+		set_pipe_position(pipe)
+
+		if pipe_hits_bird(pipe, self.bird_y) then
+			die(self)
+			return
+		end
+	end
 end
 
 function on_input(self, action_id, action)
-	if action_id == hash("touch") and action.pressed then
-		print("Touch!")
+	if action.pressed and (action_id == FLAP or action_id == TOUCH) then
+		flap(self)
 	end
 end

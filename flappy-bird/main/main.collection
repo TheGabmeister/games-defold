@@ -1,40 +1,79 @@
 name: "main"
 scale_along_z: 0
-embedded_instances {
-  id: "go"
-  data: "components {\n"
-  "  id: \"main\"\n"
-  "  component: \"/main/main.script\"\n"
-  "}\n"
-  "embedded_components {\n"
-  "  id: \"logo\"\n"
-  "  type: \"sprite\"\n"
-  "  data: \"default_animation: \\\"icon_180\\\"\\n"
-  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "textures {\\n"
-  "  sampler: \\\"texture_sampler\\\"\\n"
-  "  texture: \\\"/main/main.atlas\\\"\\n"
-  "}\\n"
-  "\"\n"
-  "}\n"
-  "embedded_components {\n"
-  "  id: \"background\"\n"
-  "  type: \"sprite\"\n"
-  "  data: \"default_animation: \\\"background\\\"\\n"
-  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "textures {\\n"
-  "  sampler: \\\"texture_sampler\\\"\\n"
-  "  texture: \\\"/main/main.atlas\\\"\\n"
-  "}\\n"
-  "\"\n"
-  "  position {\n"
-  "    z: -0.5\n"
-  "  }\n"
-  "}\n"
-  ""
+instances {
+  id: "controller"
+  prototype: "/main/controller.go"
+}
+instances {
+  id: "background"
+  prototype: "/main/background.go"
   position {
     x: 320.0
     y: 568.0
+    z: -1.0
+  }
+}
+instances {
+  id: "ground"
+  prototype: "/main/ground.go"
+  position {
+    x: 320.0
+    y: 80.0
+    z: 0.8
+  }
+}
+instances {
+  id: "bird"
+  prototype: "/main/bird.go"
+  position {
+    x: 180.0
+    y: 568.0
+    z: 0.5
+  }
+}
+instances {
+  id: "score"
+  prototype: "/main/score.go"
+  position {
+    x: 320.0
+    y: 1010.0
+    z: 0.9
+  }
+}
+instances {
+  id: "pipe_top_a"
+  prototype: "/main/pipe_top.go"
+  position {
+    x: 760.0
+    y: 1000.0
+    z: 0.3
+  }
+}
+instances {
+  id: "pipe_bottom_a"
+  prototype: "/main/pipe_bottom.go"
+  position {
+    x: 760.0
+    y: 120.0
+    z: 0.3
+  }
+}
+instances {
+  id: "pipe_top_b"
+  prototype: "/main/pipe_top.go"
+  position {
+    x: 1120.0
+    y: 1000.0
+    z: 0.3
+  }
+}
+instances {
+  id: "pipe_bottom_b"
+  prototype: "/main/pipe_bottom.go"
+  position {
+    x: 1120.0
+    y: 120.0
+    z: 0.3
   }
 }
 embedded_instances {
